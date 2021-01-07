@@ -21,6 +21,7 @@ public class Server {
             try {
                 try {
                     serverSocket = new ServerSocket(8080);
+                    System.out.println("Connected with Client");
                 } catch (IOException e) {
                     System.out.println("Listening to Port 8080...");
                 }
@@ -46,7 +47,8 @@ public class Server {
                             }
                             Triangle triangle = new Triangle(arr);
                             if (triangle.getArea() > 0) {
-                                printWriter.println("三角形面积为：" + triangle.getArea());
+                                // 结果保留2位小数
+                                printWriter.println("三角形面积为：" + String.format("%.2f", triangle.getArea()));
                             } else {
                                 printWriter.println("三角形三边输入有误");
                             }

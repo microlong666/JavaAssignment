@@ -1,7 +1,7 @@
 import java.util.StringTokenizer;
 
 /**
- * 上机实践，提取价格并计算总和，输出货品名称
+ * 上机实践：提取价格并计算总和，输出货品名称
  *
  * @author MicroLOONG
  */

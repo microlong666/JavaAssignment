@@ -11,6 +11,7 @@ import java.util.InputMismatchException;
 public class Sort {
 
     public static void main(String[] args) {
+        Sort sort = new Sort();
         Scanner scanner = new Scanner(System.in);
         int[] arr = new int[5];
 
@@ -25,12 +26,14 @@ public class Sort {
                 Arrays.sort(arr);
                 System.out.println(Arrays.toString(arr));
                 // 方法2：快速排序
-                quickSort(arr, 0, arr.length - 1);
-                output(arr);
+                sort.quickSort(arr, 0, arr.length - 1);
+                sort.output(arr);
+                // 方法3：冒泡排序
+                sort.bubbleSort(arr);
+                sort.output(arr);
             } else {
                 throw new InputMismatchException();
             }
-
         } catch (InputMismatchException e) {
             System.out.println("输入异常，请重试");
         }
@@ -43,7 +46,7 @@ public class Sort {
      * @param left  左边元素的数组下标，初始值为 0
      * @param right 左边元素的数组下标，初始值为 arr.length - 1
      */
-    public static void quickSort(int[] arr, int left, int right) {
+    public void quickSort(int[] arr, int left, int right) {
         if (left > right) {
             return;
         }
@@ -78,13 +81,31 @@ public class Sort {
     }
 
     /**
+     * 冒泡算法
+     *
+     * @param arr 整型数组
+     */
+    public void bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    /**
      * 遍历输出
      *
      * @param arr 已排序数组
      */
-    public static void output(int[] arr) {
+    public void output(int[] arr) {
         for (int array : arr) {
             System.out.print(array + " ");
         }
+        System.out.println();
     }
 }

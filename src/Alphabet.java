@@ -30,7 +30,7 @@ public class Alphabet {
 //    public static void main(String[] args) {
 //        // 获取唯一对象
 //        Alphabet alphabet = Alphabet.getInstance();
-//        alphabet.outputAlphabet('overload.A', 'Z');
+//        alphabet.outputAlphabet('A', 'Z');
 //        alphabet.outputAlphabet('a', 'z');
 //    }
 //
@@ -48,7 +48,7 @@ public class Alphabet {
 //    }
 //
 //    public static void main(String[] args) {
-//        new Alphabet('overload.A', 'Z');
+//        new Alphabet('A', 'Z');
 //        new Alphabet('a', 'z');
 //    }
 

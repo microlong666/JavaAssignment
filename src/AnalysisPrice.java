@@ -30,7 +30,7 @@ public class AnalysisPrice {
             }
             System.out.println("平均价格: " + sum / count);
         } catch (IOException e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 }

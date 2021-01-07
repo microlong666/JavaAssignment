@@ -29,9 +29,9 @@ public class ThreadJoin implements Runnable {
         String name = Thread.currentThread().getName();
         if (name.equals(driverName)) {
             System.out.println("运货司机等待装运工完成工作...");
+            // 启动装运工线程，并联合装运工
+            shipper.start();
             try {
-                // 启动装运工线程，并联合装运工
-                shipper.start();
                 shipper.join();
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -40,9 +40,9 @@ public class ThreadJoin implements Runnable {
             System.out.println("运货司机开车");
         } else if (name.equals(shipperName)) {
             System.out.println("装运工等待仓库管理员打开仓库...");
+            // 启动仓管员线程，并联合仓管员
+            manager.start();
             try {
-                // 启动仓管员线程，并联合仓管员
-                manager.start();
                 manager.join();
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
