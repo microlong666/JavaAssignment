@@ -15,7 +15,6 @@ public class ExamStatistic {
         // 匹配所有非数字字符串
         scanner.useDelimiter("[^0-9.]+");
         double sum = 0;
-        double average = 0;
         int count = 0;
         while (scanner.hasNext()) {
             try {
@@ -24,14 +23,12 @@ public class ExamStatistic {
                 count++;
                 // 总成绩计算
                 sum += score;
-                // 平均分计算
-                average = sum / count;
             } catch (InputMismatchException e) {
                 // 异常处理，返回非数字字符
                 scanner.next();
             }
         }
         System.out.println("总成绩: " + sum);
-        System.out.println("平均分: " + average);
+        System.out.println("平均分: " + sum / count);
     }
 }

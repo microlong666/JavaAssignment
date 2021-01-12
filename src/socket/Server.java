@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.*;
 
 /**
  * Socket：客户端输入三角形三边，服务端计算返回三角形面积
@@ -35,8 +36,18 @@ public class Server {
                 if (socket != null) {
                     // 内部类中要求 socket 为 final
                     Socket finalSocket = socket;
-                    // 创建线程，建议使用线程池
-                    new Thread(() -> {
+                    // 线程工厂
+                    ThreadFactory factory = Executors.defaultThreadFactory();
+                    // 创建线程，使用线程池
+                    ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                            2,
+                            4,
+                            1L,
+                            TimeUnit.SECONDS,
+                            new LinkedBlockingQueue<>(50),
+                            factory);
+
+                    Runnable runnable = () -> {
                         double[] arr = new double[3];
                         try {
                             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(finalSocket.getInputStream()));
@@ -55,7 +66,8 @@ public class Server {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }).start();
+                    };
+                    executor.execute(runnable);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

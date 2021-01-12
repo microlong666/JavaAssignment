@@ -31,6 +31,9 @@ public class Sort {
                 // 方法3：冒泡排序
                 sort.bubbleSort(arr);
                 sort.output(arr);
+                // 方法4：选择排序
+                sort.selectSort(arr);
+                sort.output(arr);
             } else {
                 throw new InputMismatchException();
             }
@@ -81,7 +84,7 @@ public class Sort {
     }
 
     /**
-     * 冒泡算法
+     * 冒泡排序算法
      *
      * @param arr 整型数组
      */
@@ -94,6 +97,25 @@ public class Sort {
                     arr[j + 1] = temp;
                 }
             }
+        }
+    }
+
+    /**
+     * 选择排序算法
+     *
+     * @param arr 整型数组
+     */
+    public void selectSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
         }
     }
 
